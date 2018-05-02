@@ -1,3 +1,5 @@
+Tabular = require "meteor/aldeed:tabular"
+
 @AdminTables = {}
 
 adminTablesDom = '<"box"<"box-header"<"box-toolbar"<"pull-left"<lf>><"pull-right"p>>><"box-body"t>><r>'
@@ -58,7 +60,8 @@ adminCreateTables = (collections) ->
 		if collection.showDelColumn
 			columns.push(adminDelButton)
 
-		AdminTables[name] = new Tabular.Table
+		AdminTables[name] = new Tabular.default.Table
+		# new TabularTables.Table
 			name: name
 			collection: adminCollectionObject(name)
 			pub: collection.children and adminTablePubName(name)
@@ -163,13 +166,13 @@ adminPublishTables = (collections) ->
 			children: collection.children
 
 Meteor.startup ->
-	adminCreateTables AdminConfig?.collections
-	adminCreateRoutes AdminConfig?.collections
-	adminPublishTables AdminConfig?.collections if Meteor.isServer
+			adminCreateTables AdminConfig?.collections
+			adminCreateRoutes AdminConfig?.collections
+			adminPublishTables AdminConfig?.collections if Meteor.isServer
 
 	if AdminTables.Users then return undefined
 
-	AdminTables.Users = new Tabular.Table
+	AdminTables.Users = new Tabular.default.Table
 		# Modify selector to allow search by email
 		changeSelector: (selector, userId) ->
 			$or = selector['$or']
