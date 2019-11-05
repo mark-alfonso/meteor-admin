@@ -69,6 +69,10 @@ adminCreateTables = (collections) ->
 			columns: columns
 			extraFields: collection.extraFields
 			dom: adminTablesDom
+			options:
+				lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]]
+			lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]]
+			# paging: false
 			selector: collection.selector || ->
 				return {}
 

@@ -35,6 +35,7 @@ Router.route "adminDashboard",
 		Session.set 'admin_title', 'Dashboard'
 		Session.set 'admin_collection_name', ''
 		Session.set 'admin_collection_page', ''
+		document.title = "Dashboard"
 
 Router.route "adminDashboardUsersView",
 	path: "/admin/Users"
@@ -48,6 +49,7 @@ Router.route "adminDashboardUsersView",
 		Session.set 'admin_title', 'Users'
 		Session.set 'admin_subtitle', 'View'
 		Session.set 'admin_collection_name', 'Users'
+		document.title = "Users"
 
 Router.route "adminDashboardUsersNew",
 	path: "/admin/Users/new"
@@ -60,6 +62,7 @@ Router.route "adminDashboardUsersNew",
 		Session.set 'admin_subtitle', 'Create new user'
 		Session.set 'admin_collection_page', 'New'
 		Session.set 'admin_collection_name', 'Users'
+		document.title = "Users"
 
 Router.route "adminDashboardUsersEdit",
 	path: "/admin/Users/:_id/edit"
@@ -78,3 +81,4 @@ Router.route "adminDashboardUsersEdit",
 		Session.set 'admin_collection_name', 'Users'
 		Session.set 'admin_id', @params._id
 		Session.set 'admin_doc', Meteor.users.findOne({_id:@params._id})
+		document.title = 'Edit user ' + @params._id

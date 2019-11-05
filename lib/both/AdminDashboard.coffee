@@ -32,6 +32,10 @@ AdminDashboard =
 
 		@sidebarItems.push item
 
+	hideSidebarItem: (title) ->
+		@sidebarItems.slice 6
+		console.log @sidebarItems
+
 	extendSidebarItem: (title, urls) ->
 		if _.isObject(urls) then urls = [urls]
 
