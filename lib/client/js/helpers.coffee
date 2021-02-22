@@ -11,12 +11,18 @@ adminCollections = ->
 		icon: 'user'
 		label: 'Users'
 
-	_.map collections, (obj, key) ->
+	collections = _.map collections, (obj, key) ->
 		obj = _.extend obj, {name: key}
 		obj = _.defaults obj, {label: key, icon: 'plus', color: 'blue'}
 		obj = _.extend obj,
 			viewPath: Router.path "adminDashboard#{key}View"
 			newPath: Router.path "adminDashboard#{key}New"
+
+	removeMenu = ["Logs"]
+	unless Roles.userIsInRole Meteor.userId(), "superadmin"
+	 removeMenu.push "Users"
+	collections = collections.filter (obj, index, arr) ->
+		return obj.label not in removeMenu
 
 UI.registerHelper 'AdminConfig', ->
 	AdminConfig if typeof AdminConfig != 'undefined'
