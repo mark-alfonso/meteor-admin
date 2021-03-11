@@ -48,6 +48,8 @@ Router.route "adminDashboardUsersView",
 	onBeforeAction: ->
 		if not Roles.userIsInRole Meteor.userId(), ['superadmin']
 			this.redirect '/admin'
+		else
+			this.next()
 	onAfterAction: ->
 		Session.set 'admin_title', 'Users'
 		Session.set 'admin_subtitle', 'View'
