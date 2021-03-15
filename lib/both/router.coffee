@@ -46,7 +46,7 @@ Router.route "adminDashboardUsersView",
 	data: ->
 		admin_table: AdminTables.Users
 	onBeforeAction: ->
-		if not Roles.userIsInRole Meteor.userId(), ['superadmin']
+		if not canDo Meteor.userId(), ['viewall'], 'users'
 			this.redirect '/admin'
 		else
 			this.next()

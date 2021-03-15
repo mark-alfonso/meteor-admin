@@ -19,7 +19,7 @@ adminCollections = ->
 			newPath: Router.path "adminDashboard#{key}New"
 
 	removeMenu = ["Logs"]
-	unless Roles.userIsInRole Meteor.userId(), "superadmin"
+	unless canDo Meteor.userId(), ['viewall'], 'users'
 	 removeMenu.push "Users"
 	collections = collections.filter (obj, index, arr) ->
 		return obj.label not in removeMenu
