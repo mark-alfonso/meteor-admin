@@ -21,6 +21,7 @@ adminCollections = ->
 	removeMenu = ["Logs"]
 	unless canDo Meteor.userId(), ['viewall'], 'users'
 	 removeMenu.push "Users"
+	 removeMenu.push "Companies"
 	collections = collections.filter (obj, index, arr) ->
 		return obj.label not in removeMenu
 
