@@ -18,10 +18,11 @@ adminCollections = ->
 			viewPath: Router.path "adminDashboard#{key}View"
 			newPath: Router.path "adminDashboard#{key}New"
 
-	removeMenu = ["Logs"]
+	removeMenu = ["Logs", "Email Templates"]
 	unless canDo Meteor.userId(), ['viewall'], 'users'
 	 removeMenu.push "Users"
-	 removeMenu.push "Companies"
+	unless canDo Meteor.userId(), ['superadmin'], 'companies'
+	 removeMenu.push "Unternehmen"
 	collections = collections.filter (obj, index, arr) ->
 		return obj.label not in removeMenu
 
