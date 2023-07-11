@@ -23,6 +23,8 @@ adminCollections = ->
 	 removeMenu.push "Users"
 	unless canDo Meteor.userId(), ['superadmin'], 'companies'
 	 removeMenu.push "Unternehmen"
+	unless canDo Meteor.userId(), ['superadmin', 'viewdeliverytimeprofiles'], 'partners'
+	 removeMenu.push "Delivery Time Profiles"
 	unless canDo Meteor.userId(), ['payments'], 'payments'
 	 removeMenu.push "Zahlungen"
 	collections = collections.filter (obj, index, arr) ->
