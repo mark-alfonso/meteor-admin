@@ -20,13 +20,15 @@ adminCollections = ->
 
 	removeMenu = ["Logs", "Email Templates"]
 	unless canDo Meteor.userId(), ['viewall'], 'users'
-	 removeMenu.push "Users"
+	  removeMenu.push "Users"
 	unless canDo Meteor.userId(), ['superadmin'], 'companies'
-	 removeMenu.push "Unternehmen"
+	  removeMenu.push "Unternehmen"
 	unless canDo Meteor.userId(), ['superadmin', 'viewdeliverytimeprofiles'], 'partners'
-	 removeMenu.push "Delivery Time Profiles"
+	  removeMenu.push "Lieferzeitprofile"
 	unless canDo Meteor.userId(), ['payments'], 'payments'
-	 removeMenu.push "Zahlungen"
+	  removeMenu.push "Zahlungen"
+	unless canDo Meteor.userId(), ['payments'], 'payments'
+	  removeMenu.push "Einstellungen"
 	collections = collections.filter (obj, index, arr) ->
 		return obj.label not in removeMenu
 
